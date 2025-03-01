@@ -29,6 +29,7 @@ public class testEnterName extends BaseTest {
         String name = "Gulshan";
         bfl.enterName(name);
         logToExtent(name+" is added in Name Field");
+        System.out.println("Hi this is feature/gulshan");
     }
 
 
