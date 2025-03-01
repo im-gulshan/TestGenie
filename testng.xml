@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <listeners>
+        <listener class-name="testFrameworkUtils.Listeners"/>
+    </listeners>
+
+
+    <test verbose="2" preserve-order="true" name="Enter Name">
+        <classes>
+            <class name="allProductTest.BlogspotWebsite.testEnterName">
+<!--                <methods>-->
+<!--                    <include name="addName"/>-->
+<!--                </methods>-->
+            </class>
+        </classes>
+    </test>
+</suite>

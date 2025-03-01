@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+    <Properties>
+        <Property name="BasePath">./Logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{MM-dd-yyyy HH:mm:ss} %-5level %logger{36} - %msg%n" />
+<!--            <PatternLayout pattern="%d{MM-dd-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />-->
+        </Console>
+
+        <RollingFile name="File"
+                     fileName="${BasePath}/TestGenieAutomation-${date:MM-dd-yyyy'-T'HH-mm-ss}.log"
+                     filePattern="${BasePath}/TestGenieAutomation-${date:MM-dd-yyyy'-T'HH-mm-ss}-%i.log">
+            <PatternLayout pattern="%d{MM-dd-yyyy HH:mm:ss} %-5level %logger{36} - %msg%n" />
+<!--            <PatternLayout pattern="%d{MM-dd-yyyy HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />-->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
