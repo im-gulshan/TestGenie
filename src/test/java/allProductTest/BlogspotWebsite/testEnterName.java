@@ -31,6 +31,13 @@ public class testEnterName extends BaseTest {
         logToExtent(name+" is added in Name Field");
     }
 
+    @Test
+    public void addEmail(){
+        String email = "abc@gmail.com";
+        bfl.enterName(email);
+        logToExtent(email+" is added in Name Field");
+    }
+
 
 
     @AfterMethod
