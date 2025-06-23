@@ -25,24 +25,27 @@ public class Listeners implements ITestListener {
     public void onTestFailure(ITestResult result) {
         baseTest.test.fail(result.getThrowable());
 
-        WebDriver driver;
+        WebDriver driver = null;
         try {
-            driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-        } catch (Exception e){
-            throw new RuntimeException(e);
+            Object testInstance = result.getInstance();
+            Class<?> clazz = testInstance.getClass();
+            java.lang.reflect.Field field = clazz.getDeclaredField("driver");
+            field.setAccessible(true);
+            driver = (WebDriver) field.get(testInstance);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to access WebDriver 'driver' field", e);
         }
 
         ScreenshotUtilities screenshot = new ScreenshotUtilities();
-        String filePath = null;
         String testCaseName = result.getMethod().getMethodName();
+        String relativePath = screenshot.getScreenshot(testCaseName, driver); // now returns relative path
 
         try {
-            filePath = screenshot.getScreenshot(testCaseName, driver);
-        }catch (Exception e){
+            baseTest.test.addScreenCaptureFromPath(relativePath, testCaseName);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        baseTest.test.addScreenCaptureFromPath(filePath, testCaseName);
-    } // onTestFailure
+    }
 
     @Override
     public void onFinish(ITestContext context) {

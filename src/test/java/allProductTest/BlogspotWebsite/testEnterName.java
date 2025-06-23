@@ -24,24 +24,28 @@ public class testEnterName extends BaseTest {
         logger.info("Application launched successfully....");
     }
 
-    @Test
-    public void addName(){
+    @Test(priority = 1)
+    public void addName() throws InterruptedException {
         String name = "Gulshan";
         bfl.enterName(name);
         logToExtent(name+" is added in Name Field");
-    }
+        logger.info("{} is added in Name Field", name);
 
-    @Test
-    public void addEmail(){
+
+
         String email = "abc@gmail.com";
-        bfl.enterName(email);
+        bfl.enterEmail(email);
         logToExtent(email+" is added in Name Field");
+        logger.info("{} is added in Name Field", email);
+
+
+        Thread.sleep(4000);
     }
 
 
 
     @AfterMethod
-    public void teaDown(){
+    public void tearDown(){
         driver.quit();
     }
 } // testEnterName
