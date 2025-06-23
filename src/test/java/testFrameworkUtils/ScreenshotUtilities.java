@@ -9,20 +9,26 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 
 public class ScreenshotUtilities {
-    public String getScreenshot(String testCaseName, WebDriver driver){
+    public String getScreenshot(String testCaseName, WebDriver driver) {
         TimestampFormatter dateFormat = new TimestampFormatter();
         String timeStamp = dateFormat.fetchCurrentTimeStamp();
 
-        String destString = System.getProperty("user.dir")+"//reports//"+"//screenshot//"+testCaseName+"-"+timeStamp+".png";
-        File destination = new File(destString);
+        String destDir = System.getProperty("user.dir") + File.separator + "reports" + File.separator + "screenshot";
+        String fileName = testCaseName + "-" + timeStamp + ".png";
+        String destPath = destDir + File.separator + fileName;
+        File destination = new File(destPath);
 
         try {
+            new File(destDir).mkdirs();
             TakesScreenshot ts = (TakesScreenshot) driver;
             File source = ts.getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(source, destination);
-        }catch (Exception e){
-            System.err.println("Failed to capture screenshot: "+e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Failed to capture screenshot: " + e.getMessage());
         }
-        return destString;
+
+        // Return relative path from HTML report location
+        return "../screenshot/" + fileName;
     }
-} // ScreenshotUtilities
+}
+

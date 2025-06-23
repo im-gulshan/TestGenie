@@ -12,7 +12,11 @@ public class BlogspotFunctionLibrary extends SeleniumFunctionLibrary{
     }
 
     public void enterName(String name){
-        sendKeys(BlogspotXpathRepo.name, name);
+        enterText(BlogspotXpathRepo.name, name);
+    }
+
+    public void enterEmail(String name){
+        enterText(BlogspotXpathRepo.email, name);
     }
 
 
