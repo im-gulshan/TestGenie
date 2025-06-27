@@ -1,6 +1,8 @@
 package testFrameworkUtils;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import mainFrameworkUtils.ExtentReportManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -8,45 +10,57 @@ import org.testng.ITestResult;
 
 public class Listeners implements ITestListener {
 
-    private BaseTest baseTest;
+    private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     @Override
-    public void onTestStart(ITestResult result){
-        baseTest = (BaseTest) result.getInstance();
-        baseTest.test = baseTest.extent.createTest(result.getMethod().getMethodName());
+    public void onTestStart(ITestResult result) {
+        String testName = result.getMethod().getMethodName();
+        ExtentTest test = BaseTest.extent.createTest(testName);
+        extentTest.set(test);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        baseTest.test.log(Status.PASS, "Test Passed");
+        extentTest.get().log(Status.PASS, "✅ Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        baseTest.test.fail(result.getThrowable());
+        extentTest.get().log(Status.FAIL, result.getThrowable());
 
-        WebDriver driver;
+        WebDriver driver = null;
         try {
-            driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-        } catch (Exception e){
-            throw new RuntimeException(e);
+            Object testInstance = result.getInstance();
+            Class<?> clazz = testInstance.getClass();
+            java.lang.reflect.Field field = clazz.getDeclaredField("driver");
+            field.setAccessible(true);
+            driver = (WebDriver) field.get(testInstance);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to access WebDriver 'driver' field", e);
         }
 
         ScreenshotUtilities screenshot = new ScreenshotUtilities();
-        String filePath = null;
         String testCaseName = result.getMethod().getMethodName();
+        String relativePath = screenshot.getScreenshot(testCaseName, driver);
 
         try {
-            filePath = screenshot.getScreenshot(testCaseName, driver);
-        }catch (Exception e){
+            extentTest.get().addScreenCaptureFromPath(relativePath, testCaseName);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        baseTest.test.addScreenCaptureFromPath(filePath, testCaseName);
-    } // onTestFailure
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        extentTest.get().log(Status.SKIP, "⚠️ Test Skipped");
+    }
 
     @Override
     public void onFinish(ITestContext context) {
-        baseTest.extent.flush();
+        BaseTest.extent.flush();
+        extentTest.remove(); // clean up thread-local
     }
-
-} // Listeners
+    public static ExtentTest getExtentTest() {
+        return extentTest.get();
+    }
+}
