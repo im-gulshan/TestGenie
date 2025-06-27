@@ -5,11 +5,14 @@ import com.aventstack.extentreports.ExtentTest;
 import mainFrameworkUtils.ExtentReportManager;
 
 public class BaseTest {
-    protected ExtentTest test;
-    private ExtentReportManager extentReportManager = new ExtentReportManager();
-    protected ExtentReports extent = extentReportManager.createExtentReport();
+    // Thread-safe static ExtentReports instance (shared)
+    public static final ExtentReports extent = ExtentReportManager.createExtentReport();
 
-    protected void logToExtent(String messge){
-        test.info(messge);
+    // Thread-local ExtentTest will be managed in Listeners.java
+    protected void logToExtent(String message) {
+        ExtentTest test = Listeners.getExtentTest();
+        if (test != null) {
+            test.info(message);
+        }
     }
-} // BaseTest
+}

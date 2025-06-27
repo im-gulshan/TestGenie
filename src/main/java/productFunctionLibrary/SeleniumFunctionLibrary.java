@@ -41,8 +41,14 @@ public class SeleniumFunctionLibrary {
     }
 
     public void waitForVisibilityOfElement(WebElement xpath){
-//        WebElement element = driver.findElement(By.xpath(xpath));
+        logger.info("Waiting for visbility of element : "+xpath);
         wait.until(ExpectedConditions.visibilityOf(xpath));
+    }
+
+    public String getTextOfElement(String xpath){
+        WebElement element =  driver.findElement(By.xpath(xpath));
+        logger.info("Text retrieved from element : "+xpath);
+        return element.getText();
     }
 
 } // SeleniumFunctionLibrary
