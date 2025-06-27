@@ -1,6 +1,8 @@
 package testFrameworkUtils;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import mainFrameworkUtils.ExtentReportManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -8,22 +10,23 @@ import org.testng.ITestResult;
 
 public class Listeners implements ITestListener {
 
-    private BaseTest baseTest;
+    private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     @Override
-    public void onTestStart(ITestResult result){
-        baseTest = (BaseTest) result.getInstance();
-        baseTest.test = baseTest.extent.createTest(result.getMethod().getMethodName());
+    public void onTestStart(ITestResult result) {
+        String testName = result.getMethod().getMethodName();
+        ExtentTest test = BaseTest.extent.createTest(testName);
+        extentTest.set(test);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        baseTest.test.log(Status.PASS, "Test Passed");
+        extentTest.get().log(Status.PASS, "✅ Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        baseTest.test.fail(result.getThrowable());
+        extentTest.get().log(Status.FAIL, result.getThrowable());
 
         WebDriver driver = null;
         try {
@@ -38,18 +41,26 @@ public class Listeners implements ITestListener {
 
         ScreenshotUtilities screenshot = new ScreenshotUtilities();
         String testCaseName = result.getMethod().getMethodName();
-        String relativePath = screenshot.getScreenshot(testCaseName, driver); // now returns relative path
+        String relativePath = screenshot.getScreenshot(testCaseName, driver);
 
         try {
-            baseTest.test.addScreenCaptureFromPath(relativePath, testCaseName);
+            extentTest.get().addScreenCaptureFromPath(relativePath, testCaseName);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void onFinish(ITestContext context) {
-        baseTest.extent.flush();
+    public void onTestSkipped(ITestResult result) {
+        extentTest.get().log(Status.SKIP, "⚠️ Test Skipped");
     }
 
-} // Listeners
+    @Override
+    public void onFinish(ITestContext context) {
+        BaseTest.extent.flush();
+        extentTest.remove(); // clean up thread-local
+    }
+    public static ExtentTest getExtentTest() {
+        return extentTest.get();
+    }
+}
