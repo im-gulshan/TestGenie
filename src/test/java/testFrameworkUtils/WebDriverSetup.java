@@ -56,11 +56,13 @@ public class WebDriverSetup {
         prefs.put("profile.default_content_setting_values.notifications", 2);
 
         options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--headless=new");
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-extensions");
-        options.addArguments("--start-maximized");
+        options.addArguments("--window-size=1920,1080");
+//        options.addArguments("--start-maximized");
         options.addArguments("--disable-features=PasswordManagerEnabled,AutofillServerCommunication,AutofillCreditCardAssist");
 
         return options;
@@ -76,10 +78,12 @@ public class WebDriverSetup {
 
         options.setExperimentalOption("prefs", edgePrefs);
         options.addArguments("--disable-save-password-bubble");
+        options.addArguments("--headless=new");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-extensions");
-        options.addArguments("--start-maximized");
+//        options.addArguments("--start-maximized");
+        options.addArguments("--window-size=1920,1080");
         options.addArguments("--disable-features=PasswordManagerEnabled,AutofillServerCommunication,AutofillCreditCardAssist");
 
         return options;
@@ -87,6 +91,13 @@ public class WebDriverSetup {
 
     private FirefoxOptions getFirefoxOptions() {
         FirefoxOptions options = new FirefoxOptions();
+
+        // Set Firefox to headless mode
+        options.addArguments("--headless");
+
+        // Set window size using capability
+        options.addArguments("--width=1920");
+        options.addArguments("--height=1080");
 
         // Disable password saving in Firefox
         options.addPreference("signon.rememberSignons", false);

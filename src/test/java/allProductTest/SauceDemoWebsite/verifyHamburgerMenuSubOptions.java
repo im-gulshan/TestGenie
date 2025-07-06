@@ -1,35 +1,16 @@
 package allProductTest.SauceDemoWebsite;
 
 import mainFrameworkUtils.ContentRepo;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.*;
-import productFunctionLibrary.SauceDemoFunctionLibrary;
+import org.testng.annotations.Test;
 import testFrameworkUtils.BaseTest;
-import testFrameworkUtils.WebDriverSetup;
 import xpathRepo.SauceDemoXpathRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class verifyHamburgerMenuSubOptions extends BaseTest {
-
-    public WebDriver driver; // Must be public for reflection in Listeners
-    SauceDemoFunctionLibrary sdfl;
-    Logger logger = LogManager.getLogger(this.getClass());
-
-    @BeforeMethod
-    public void setUp() throws Exception {
-        WebDriverSetup webDriverSetup = new WebDriverSetup();
-        driver = webDriverSetup.launchApplication();
-        sdfl = new SauceDemoFunctionLibrary(driver);
-
-        logger.info("SauceDemo application launched successfully.");
-
-    }
 
     @Test(description = "Verify hamburger menu sub-options match the expected values")
     public void TC_001_testHamburgerMenuSubOptions() {
@@ -64,15 +45,6 @@ public class verifyHamburgerMenuSubOptions extends BaseTest {
             Assert.fail(errorMessage);
         } else {
             logToExtent("✅ Hamburger menu options match expected values.");
-        }
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            logger.info("Browser closed successfully.");
-            logToExtent("Browser closed successfully.");
         }
     }
 }

@@ -1,37 +1,17 @@
 package allProductTest.SauceDemoWebsite;
 
 import mainFrameworkUtils.ContentRepo;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import productFunctionLibrary.SauceDemoFunctionLibrary;
 import testFrameworkUtils.BaseTest;
-import testFrameworkUtils.WebDriverSetup;
 import xpathRepo.SauceDemoXpathRepo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class verifyFilterSortVerification extends BaseTest {
-    public WebDriver driver;
-    SauceDemoFunctionLibrary sdfl;
-    Logger logger = LogManager.getLogger(this.getClass());
-
-    @BeforeMethod
-    public void setUp() throws Exception{
-        WebDriverSetup webDriverSetup = new WebDriverSetup();
-        driver = webDriverSetup.launchApplication();
-        sdfl = new SauceDemoFunctionLibrary(driver);
-
-        logger.info("SauceDemo application launched successfully.");
-    }
 
     @Test(dataProvider = "sortOptions")
     public void TC_004_testFilterSortVerification(String testCaseId, String sortOption) throws Exception{
@@ -46,7 +26,7 @@ public class verifyFilterSortVerification extends BaseTest {
         logger.info("Applied filter: {}", sortOption);
         logToExtent("[" + testCaseId + "] Filter applied: "+ sortOption);
 
-        // Step 3: Capture Product Names
+        // Step 3: Capture Product Names/Prices
         List<String> allProductsNames = List.of();
         List<Double> allProductsPrice = List.of();
 
@@ -74,7 +54,6 @@ public class verifyFilterSortVerification extends BaseTest {
             logger.info("Captured product prices: {}", allProductsPrice);
             logToExtent("[" + testCaseId + "] Captured product prices: " + allProductsPrice);
         }
-
 
         // Step 5: Validate Sorting
         boolean isProductSorted = switch (sortOption) {
@@ -106,13 +85,4 @@ public class verifyFilterSortVerification extends BaseTest {
         return data;
     }
 
-
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            logger.info("Browser closed successfully.");
-            logToExtent("Browser closed successfully.");
-        }
-    }
 } // verifyFilterSortVerification
