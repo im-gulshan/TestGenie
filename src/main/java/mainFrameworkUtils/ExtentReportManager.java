@@ -4,6 +4,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
+import java.io.File;
+
 public class ExtentReportManager {
     private static String path;
 
@@ -11,7 +13,12 @@ public class ExtentReportManager {
         TimestampFormatter dateFormat = new TimestampFormatter();
         String timeStamp = dateFormat.fetchCurrentTimeStamp();
 
-        path = System.getProperty("user.dir") + "//reports//htmlReports//TestGenie-" + timeStamp + ".html";
+        // Create the directory if it doesn't exist
+        String dirPath = System.getProperty("user.dir") + File.separator + "reports" + File.separator + "htmlReports";
+        new File(dirPath).mkdirs();
+
+        // Create the full report file path
+        path = dirPath + File.separator + "TestGenie-" + timeStamp + ".html";
 
         ExtentSparkReporter reporter = new ExtentSparkReporter(path);
         reporter.config().setReportName("Test Genie Automation Report");
