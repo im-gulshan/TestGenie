@@ -6,6 +6,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,7 +28,7 @@ jobs:
         run: mvn clean compile
 
       - name: Run SauceDemo TestNG Suite
-        run: mvn test -DsuiteXmlFile=TestRunner/SauceDemo.xml
+        run: mvn test -DsuiteXmlFile=TestRunner/SauceDemo.xml -Dheadless=true
 
       - name: Archive Test Results
         if: always()
@@ -36,16 +37,9 @@ jobs:
           name: test-results
           path: target/surefire-reports/
 
-      - name: Find latest Extent Report
-        id: find_report
-        run: |
-          REPORT=$(find reports/htmlReports -name "TestGenie-*.html" | sort | tail -n 1)
-          echo "Found report: $REPORT"
-          echo "latest_report=$REPORT" >> $GITHUB_OUTPUT
-
-      - name: Upload Extent Report
+      - name: Upload Entire HTML Report Folder
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: extent-report
-          path: ${{ steps.find_report.outputs.latest_report }}
+          path: reports/htmlReports/
