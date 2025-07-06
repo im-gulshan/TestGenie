@@ -40,7 +40,7 @@ jobs:
         id: find_report
         run: |
           REPORT=$(find reports/htmlReports -name "TestGenie-*.html" | sort | tail -n 1)
-          echo "latest_report=$REPORT"
+          echo "Found report: $REPORT"
           echo "latest_report=$REPORT" >> $GITHUB_OUTPUT
 
       - name: Upload Extent Report
