@@ -33,12 +33,12 @@ public class verifyProductFilterOptions extends BaseTest {
     }
 
     @Test(description = "Verify that product filter options match the expected values")
-    public void TC_003_verifyProductFilterOptions() {
+    public void TC_003_testProductFilterOptions() {
         logToExtent("SauceDemo application launched successfully.");
 
         // Step 1: Login
         sdfl.loginInSauceDemo();
-        logToExtent("✅ User logged in successfully.");
+        logToExtent("User logged in successfully.");
 
         // Step 2: Fetch actual filter options
         List<WebElement> elements = sdfl.getListOfElements(SauceDemoXpathRepo.productFilterOptions);
@@ -47,7 +47,7 @@ public class verifyProductFilterOptions extends BaseTest {
             actualFilterOptions.add(element.getText().trim());
         }
 
-        logToExtent("Extracted actual product filter options: " + actualFilterOptions);
+        logToExtent("Actual product filter options: " + actualFilterOptions);
 
         // Step 3: Expected options from ContentRepo
         List<String> expectedFilterOptions = ContentRepo.productFilterOptions;

@@ -11,6 +11,7 @@
             <class name="allProductTest.SauceDemoWebsite.verifyHamburgerMenuSubOptions"/>
             <class name="allProductTest.SauceDemoWebsite.verifyAppLogoAndProductTitle"/>
             <class name="allProductTest.SauceDemoWebsite.verifyProductFilterOptions"/>
+            <class name="allProductTest.SauceDemoWebsite.verifyFilterSortVerification"/>
         </classes>
     </test>
 
