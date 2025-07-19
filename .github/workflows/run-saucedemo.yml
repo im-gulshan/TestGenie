@@ -24,22 +24,33 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
-      - name: Build with Maven
-        run: mvn clean compile
+      - name: Clean reports (Extent + Screenshots)
+        run: |
+          rm -rf reports/htmlReports/*
+          rm -rf reports/screenshot/*
 
       - name: Run SauceDemo TestNG Suite
-        run: mvn test -DsuiteXmlFile=TestRunner/SauceDemo.xml -Dheadless=true
+        run: mvn clean test -DsuiteXmlFile=TestRunner/SauceDemo.xml -Dheadless=true
 
-      - name: Archive Test Results
+      - name: Debug - List generated Extent report
+        run: ls -R reports/htmlReports || echo "Extent report not found"
+
+      - name: Print Surefire failure logs if test fails
+        if: failure()
+        run: |
+          echo "📄 TestNG Failure Logs:"
+          cat target/surefire-reports/*.txt || echo "No logs found"
+
+      - name: Archive Test Results (Surefire)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-${{ github.run_number }}
           path: target/surefire-reports/
 
-      - name: Upload Entire HTML Report Folder
+      - name: Upload Extent HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: extent-report
+          name: extent-report-${{ github.run_number }}
           path: reports/htmlReports/
