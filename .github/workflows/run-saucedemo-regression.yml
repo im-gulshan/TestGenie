@@ -1,4 +1,4 @@
-name: Run SauceDemo TestNG Suite Manually
+name: Run SauceDemo TestNG - Regression Suite Manually
 
 on:
   workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
           rm -rf reports/screenshot/*
 
       - name: Run SauceDemo TestNG Suite
-        run: mvn clean test -DsuiteXmlFile=TestRunner/SauceDemo.xml -Dheadless=true
+        run: mvn clean test -DsuiteXmlFile=TestRunner/Regression -Dheadless=true
 
       - name: Debug - List generated Extent report
         run: ls -R reports/htmlReports || echo "Extent report not found"
