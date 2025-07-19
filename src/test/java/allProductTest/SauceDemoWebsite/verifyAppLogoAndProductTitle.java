@@ -6,8 +6,6 @@ import org.testng.annotations.Test;
 import testFrameworkUtils.BaseTest;
 import xpathRepo.SauceDemoXpathRepo;
 
-import java.time.Duration;
-
 //@Listeners(testFrameworkUtils.Listeners.class)
 public class verifyAppLogoAndProductTitle extends BaseTest {
 

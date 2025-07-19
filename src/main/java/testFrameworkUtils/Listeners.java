@@ -2,7 +2,6 @@ package testFrameworkUtils;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import mainFrameworkUtils.ExtentReportManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
