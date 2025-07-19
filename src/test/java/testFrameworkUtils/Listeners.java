@@ -32,9 +32,25 @@ public class Listeners implements ITestListener {
         try {
             Object testInstance = result.getInstance();
             Class<?> clazz = testInstance.getClass();
-            java.lang.reflect.Field field = clazz.getDeclaredField("driver");
-            field.setAccessible(true);
-            driver = (WebDriver) field.get(testInstance);
+            java.lang.reflect.Field field = null;
+
+            // Search the class hierarchy for the 'driver' field
+            while (clazz != null) {
+                try {
+                    field = clazz.getDeclaredField("driver");
+                    field.setAccessible(true);
+                    driver = (WebDriver) field.get(testInstance);
+                    break;
+                } catch (NoSuchFieldException e) {
+                    clazz = clazz.getSuperclass(); // Try superclass
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException("Could not access the 'driver' field", e);
+                }
+            }
+
+            if (driver == null) {
+                throw new RuntimeException("Failed to access WebDriver 'driver' field");
+            }
         } catch (Exception e) {
             throw new RuntimeException("Failed to access WebDriver 'driver' field", e);
         }
@@ -60,6 +76,7 @@ public class Listeners implements ITestListener {
         BaseTest.extent.flush();
         extentTest.remove(); // clean up thread-local
     }
+
     public static ExtentTest getExtentTest() {
         return extentTest.get();
     }

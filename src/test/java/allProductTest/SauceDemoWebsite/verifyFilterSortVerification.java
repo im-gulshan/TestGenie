@@ -31,7 +31,7 @@ public class verifyFilterSortVerification extends BaseTest {
         List<Double> allProductsPrice = List.of();
 
         if(sortOption.equals("Name (A to Z)") || sortOption.equals("Name (Z to A)")){
-            List<WebElement> productElements = sdfl.getListOfElements(SauceDemoXpathRepo.allProductElements);
+            List<WebElement> productElements = sdfl.getListOfElements(SauceDemoXpathRepo.allProduct);
             allProductsNames = new ArrayList<>();
             for (WebElement element : productElements){
                 allProductsNames.add(element.getText().trim());

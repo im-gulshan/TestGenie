@@ -99,4 +99,21 @@ public class SeleniumFunctionLibrary {
         logger.info("Selected '" + text + "' from dropdown with class name: " + className);
     }
 
+    /**
+     * Scrolls the browser viewport to bring the specified element into view.
+     * Element is located using its XPath, and visibility is explicitly waited for before scrolling.
+     *
+     * @param xpath XPath of the element to scroll to
+     */
+    public void scrollToElement(String xpath){
+        WebElement element = driver.findElement(By.xpath(xpath));
+        waitForVisibilityOfElement(element);
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+
+    public String getCurrentPageURL(){
+        return  driver.getCurrentUrl();
+    }
+
 } // End of SeleniumFunctionLibrary

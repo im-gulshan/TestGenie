@@ -24,19 +24,20 @@ public class WebDriverSetup {
                 "\\src\\main\\java\\configSettings\\GlobalData.properties");
         prop.load(fis);
 
-        String browserName = prop.getProperty("browser");
+        String browserName = prop.getProperty("browser").toLowerCase();
         testEnvUrl = prop.getProperty("testEnvURL");
+        boolean isHeadLess = Boolean.parseBoolean(prop.getProperty("headLess","false"));
 
         // Launch browser based on config
-        switch (browserName.toLowerCase()) {
+        switch (browserName) {
             case "chrome":
-                driver = new ChromeDriver(getChromeOptions());
+                driver = new ChromeDriver(getChromeOptions(isHeadLess));
                 break;
             case "edge":
-                driver = new EdgeDriver(getEdgeOptions());
+                driver = new EdgeDriver(getEdgeOptions(isHeadLess));
                 break;
             case "firefox":
-                driver = new FirefoxDriver(getFirefoxOptions());
+                driver = new FirefoxDriver(getFirefoxOptions(isHeadLess));
                 break;
             default:
                 throw new RuntimeException("Browser not supported: " + browserName);
@@ -47,7 +48,7 @@ public class WebDriverSetup {
         return driver;
     }
 
-    private ChromeOptions getChromeOptions() {
+    private ChromeOptions getChromeOptions(boolean isHeadLess) {
         ChromeOptions options = new ChromeOptions();
 
         HashMap<String, Object> prefs = new HashMap<>();
@@ -56,7 +57,9 @@ public class WebDriverSetup {
         prefs.put("profile.default_content_setting_values.notifications", 2);
 
         options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--headless=new");
+        if (isHeadLess) {
+            options.addArguments("--headless=new");
+        }
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-infobars");
@@ -68,7 +71,7 @@ public class WebDriverSetup {
         return options;
     }
 
-    private EdgeOptions getEdgeOptions() {
+    private EdgeOptions getEdgeOptions(boolean isHeadLess) {
         EdgeOptions options = new EdgeOptions();
 
         HashMap<String, Object> edgePrefs = new HashMap<>();
@@ -78,7 +81,9 @@ public class WebDriverSetup {
 
         options.setExperimentalOption("prefs", edgePrefs);
         options.addArguments("--disable-save-password-bubble");
-        options.addArguments("--headless=new");
+        if (isHeadLess){
+            options.addArguments("--headless=new");
+        }
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-extensions");
@@ -89,11 +94,13 @@ public class WebDriverSetup {
         return options;
     }
 
-    private FirefoxOptions getFirefoxOptions() {
+    private FirefoxOptions getFirefoxOptions(boolean isHeadLess) {
         FirefoxOptions options = new FirefoxOptions();
 
         // Set Firefox to headless mode
-        options.addArguments("--headless");
+        if (isHeadLess){
+            options.addArguments("--headless");
+        }
 
         // Set window size using capability
         options.addArguments("--width=1920");
