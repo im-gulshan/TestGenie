@@ -5,9 +5,6 @@ target/
 !**/src/test/**/target/
 
 # Reports - prevent stale Extent reports from being committed
-/reports/
-/reports/htmlReports/
-/reports/screenshot/
 
 # IntelliJ IDEA
 .idea/modules.xml
