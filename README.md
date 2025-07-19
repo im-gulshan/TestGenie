@@ -70,23 +70,26 @@ TestGenie/
 │   │   ├── mainFrameworkUtils/
 │   │   │   ├── ExtentReportManager.java
 │   │   │   └── TimestampFormatter.java
-│   │   └── productFunctionLibrary/
-│   │       ├── SeleniumFunctionLibrary.java
-│   │       └── SauceDemoFunctionLibrary.java
+│   │   ├── productFunctionLibrary/
+│   │   │   ├── SeleniumFunctionLibrary.java
+│   │   │   └── SauceDemoFunctionLibrary.java
+│   │   └── testFrameworkUtils/
+│   │       ├── BaseTest.java
+│   │       ├── WebDriverSetup.java
+│   │       ├── Listeners.java
+│   │       └── ScreenshotUtilities.java
 │   └── test/java/
 │       ├── allProductTest/
 │       │   └── SauceDemoWebsite/
-│       └── testFrameworkUtils/
-│           ├── BaseTest.java
-│           ├── WebDriverSetup.java
-│           ├── Listeners.java
-│           └── ScreenshotUtilities.java
+│       └── TestCaseFile/
+│           └── (Your Excel-based test case classes here)
 ├── TestRunner/
 │   └── SauceDemo.xml
 ├── reports/
 │   ├── htmlReports/
 │   └── screenshot/
 └── pom.xml
+
 ```
 
 ## 📊 Reporting
