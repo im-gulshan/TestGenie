@@ -1,0 +1,67 @@
+07-09-2025 00:04:13 INFO  allProductTest.SauceDemoWebsite.verifyAppLogoAndProductTitle - Application launched successfully.
+07-09-2025 00:04:13 INFO  allProductTest.SauceDemoWebsite.verifyHamburgerMenuSubOptions - Application launched successfully.
+07-09-2025 00:04:13 INFO  allProductTest.SauceDemoWebsite.verifyProductFilterOptions - Application launched successfully.
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: standard_user in element: //input[@id='user-name']
+07-09-2025 00:04:13 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Application launched successfully.
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: secret_sauce in element: //input[@id='password']
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: standard_user in element: //input[@id='user-name']
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: standard_user in element: //input[@id='user-name']
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: standard_user in element: //input[@id='user-name']
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: secret_sauce in element: //input[@id='password']
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //input[@id='login-button']
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Logged in into SauceDemo successfully....
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Text retrieved from element: //div[@class='app_logo']
+07-09-2025 00:04:13 INFO  allProductTest.SauceDemoWebsite.verifyAppLogoAndProductTitle - Verifying App Logo...
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: secret_sauce in element: //input[@id='password']
+07-09-2025 00:04:13 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Text retrieved from element: //span[@class='title']
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: secret_sauce in element: //input[@id='password']
+07-09-2025 00:04:14 INFO  allProductTest.SauceDemoWebsite.verifyAppLogoAndProductTitle - Verifying Product Title...
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //input[@id='login-button']
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Logged in into SauceDemo successfully....
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //input[@id='login-button']
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Logged in into SauceDemo successfully....
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //input[@id='login-button']
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Logged in into SauceDemo successfully....
+07-09-2025 00:04:14 INFO  allProductTest.SauceDemoWebsite.verifyAppLogoAndProductTitle - Browser closed successfully.
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //button[contains(@id, 'burger-menu')]
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Waiting for visibility of element: [[EdgeDriver: MicrosoftEdge on windows (b62fb47b0b6f6e71c2eff00c6c262645)] -> xpath: //a[contains(@class, 'menu-item')]]
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Selected 'Name (A to Z)' from dropdown with class name: product_sort_container
+07-09-2025 00:04:14 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Applied filter: Name (A to Z)
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Waiting for visibility of element: [[EdgeDriver: MicrosoftEdge on windows (b62fb47b0b6f6e71c2eff00c6c262645)] -> xpath: //a[contains(@class, 'menu-item')]]
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Waiting for visibility of element: [[EdgeDriver: MicrosoftEdge on windows (b62fb47b0b6f6e71c2eff00c6c262645)] -> xpath: //a[contains(@class, 'menu-item')]]
+07-09-2025 00:04:14 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Waiting for visibility of element: [[EdgeDriver: MicrosoftEdge on windows (b62fb47b0b6f6e71c2eff00c6c262645)] -> xpath: //a[contains(@class, 'menu-item')]]
+07-09-2025 00:04:14 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Captured product names: [Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket, Sauce Labs Onesie, Test.allTheThings() T-Shirt (Red)]
+07-09-2025 00:04:14 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - ✅ Products are sorted in Name (A to Z) order.
+07-09-2025 00:04:14 INFO  allProductTest.SauceDemoWebsite.verifyProductFilterOptions - Browser closed successfully.
+07-09-2025 00:04:14 INFO  allProductTest.SauceDemoWebsite.verifyHamburgerMenuSubOptions - Browser closed successfully.
+07-09-2025 00:04:15 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Browser closed successfully.
+07-09-2025 00:04:17 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Application launched successfully.
+07-09-2025 00:04:17 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: standard_user in element: //input[@id='user-name']
+07-09-2025 00:04:17 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: secret_sauce in element: //input[@id='password']
+07-09-2025 00:04:17 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //input[@id='login-button']
+07-09-2025 00:04:17 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Logged in into SauceDemo successfully....
+07-09-2025 00:04:17 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Selected 'Name (Z to A)' from dropdown with class name: product_sort_container
+07-09-2025 00:04:17 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Applied filter: Name (Z to A)
+07-09-2025 00:04:17 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Captured product names: [Test.allTheThings() T-Shirt (Red), Sauce Labs Onesie, Sauce Labs Fleece Jacket, Sauce Labs Bolt T-Shirt, Sauce Labs Bike Light, Sauce Labs Backpack]
+07-09-2025 00:04:17 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - ✅ Products are sorted in Name (Z to A) order.
+07-09-2025 00:04:18 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Browser closed successfully.
+07-09-2025 00:04:19 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Application launched successfully.
+07-09-2025 00:04:19 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: standard_user in element: //input[@id='user-name']
+07-09-2025 00:04:19 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: secret_sauce in element: //input[@id='password']
+07-09-2025 00:04:20 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //input[@id='login-button']
+07-09-2025 00:04:20 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Logged in into SauceDemo successfully....
+07-09-2025 00:04:20 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Selected 'Price (low to high)' from dropdown with class name: product_sort_container
+07-09-2025 00:04:20 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Applied filter: Price (low to high)
+07-09-2025 00:04:20 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Captured product prices: [7.99, 9.99, 15.99, 15.99, 29.99, 49.99]
+07-09-2025 00:04:20 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - ✅ Products are sorted in Price (low to high) order.
+07-09-2025 00:04:20 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Browser closed successfully.
+07-09-2025 00:04:22 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Application launched successfully.
+07-09-2025 00:04:22 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: standard_user in element: //input[@id='user-name']
+07-09-2025 00:04:22 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Entered Text: secret_sauce in element: //input[@id='password']
+07-09-2025 00:04:22 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Clicked on element: //input[@id='login-button']
+07-09-2025 00:04:22 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Logged in into SauceDemo successfully....
+07-09-2025 00:04:22 INFO  productFunctionLibrary.SauceDemoFunctionLibrary - Selected 'Price (high to low)' from dropdown with class name: product_sort_container
+07-09-2025 00:04:22 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Applied filter: Price (high to low)
+07-09-2025 00:04:22 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Captured product prices: [49.99, 29.99, 15.99, 15.99, 9.99, 7.99]
+07-09-2025 00:04:22 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - ✅ Products are sorted in Price (high to low) order.
+07-09-2025 00:04:23 INFO  allProductTest.SauceDemoWebsite.verifyFilterSortVerification - Browser closed successfully.

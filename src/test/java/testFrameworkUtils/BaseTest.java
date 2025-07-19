@@ -14,9 +14,10 @@ public class BaseTest {
     // Thread-safe static ExtentReports instance (shared)
     public static final ExtentReports extent = ExtentReportManager.createExtentReport();
 
+    protected SauceDemoFunctionLibrary sdfl;
     protected WebDriver driver;
     protected Logger logger = LogManager.getLogger(this.getClass());
-    protected SauceDemoFunctionLibrary sdfl;
+
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
