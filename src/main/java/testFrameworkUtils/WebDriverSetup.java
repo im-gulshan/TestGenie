@@ -8,8 +8,11 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -20,8 +23,14 @@ public class WebDriverSetup {
     public WebDriver launchApplication() throws IOException {
         // Load configuration
         Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") +
-                "\\src\\main\\java\\configSettings\\GlobalData.properties");
+        Path configPath = Paths.get(System.getProperty("user.dir"), "src", "main", "java", "configSettings", "GlobalData.properties");
+        File configFile = configPath.toFile();
+
+        if (!configFile.exists()) {
+            throw new IOException("❌ GlobalData.properties file not found at: " + configFile.getAbsolutePath());
+        }
+
+        FileInputStream fis = new FileInputStream(configFile);
         prop.load(fis);
 
         String browserName = prop.getProperty("browser").toLowerCase();
