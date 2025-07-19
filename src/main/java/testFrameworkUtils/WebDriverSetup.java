@@ -33,9 +33,23 @@ public class WebDriverSetup {
         FileInputStream fis = new FileInputStream(configFile);
         prop.load(fis);
 
-        String browserName = prop.getProperty("browser").toLowerCase();
+        // Determine the browser name to use for test execution
+        // Priority:
+        // 1. Use the value passed via command-line argument: -Dbrowser=edge
+        // 2. If not passed via CLI, use the value from GlobalData.properties
+        // 3. If neither is set, default to "chrome"
+        String browserProp = System.getProperty("browser");
+        String browserName = browserProp != null
+                ? browserProp.toLowerCase()
+                : prop.getProperty("browser", "chrome").toLowerCase();
+
         testEnvUrl = prop.getProperty("testEnvURL");
-        boolean isHeadLess = Boolean.parseBoolean(prop.getProperty("headLess","false"));
+
+        // Prefer command-line value (-Dheadless=true) over property file for headless execution
+        String headlessProp = System.getProperty("headless");
+        boolean isHeadLess = headlessProp != null
+                ? Boolean.parseBoolean(headlessProp)
+                : Boolean.parseBoolean(prop.getProperty("headLess", "false"));
 
         // Launch browser based on config
         switch (browserName) {
