@@ -4,21 +4,17 @@ import mainFrameworkUtils.ContentRepo;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import testFrameworkUtils.BaseTest;
+import testFramework.base.SauceDemoBaseTest;
 import xpathRepo.SauceDemoXpathRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class verifyHamburgerMenuSubOptions extends BaseTest {
+public class verifyHamburgerMenuSubOptions extends SauceDemoBaseTest {
 
     @Test(description = "Verify hamburger menu sub-options match the expected values")
     public void TC_001_testHamburgerMenuSubOptions() {
         logToExtent("SauceDemo application launched successfully.");
-
-        // Login
-        sdfl.loginInSauceDemo();
-        logToExtent("User logged in successfully.");
 
         // Click on hamburger menu
         sdfl.clickOnElement(SauceDemoXpathRepo.hamburgerMenu);
@@ -39,7 +35,8 @@ public class verifyHamburgerMenuSubOptions extends BaseTest {
 
         // Assertion
         if (!actualOptions.equals(expectedOptions)) {
-            String errorMessage = "Mismatch in hamburger menu options.\nExpected: " + expectedOptions + "\nActual: " + actualOptions;
+            String errorMessage = "Mismatch in hamburger menu options.\nExpected: " + expectedOptions + "\nActual: "
+                    + actualOptions;
             logger.error(errorMessage);
             logToExtent("❌ " + errorMessage);
             Assert.fail(errorMessage);

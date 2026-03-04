@@ -1,4 +1,4 @@
-package testFrameworkUtils;
+package testFramework.reporting;
 
 import mainFrameworkUtils.TimestampFormatter;
 import org.apache.commons.io.FileUtils;

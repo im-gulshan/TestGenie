@@ -23,12 +23,7 @@ public class ConfigurationManager {
 
     // Get property value from specified properties file
     public static String getProperty(String fileName, String key) {
-        return getProperty(fileName, key, null);
-    }
-
-    // Get property value with default fallback
-    public static String getProperty(String fileName, String key, String defaultValue) {
-        // First check if system property override exists
+        // First check if system property override exists (for CI/CD runtime overrides)
         String systemProperty = System.getProperty(key);
         if (systemProperty != null) {
             logger.debug("Using system property for key '{}': {}", key, systemProperty);
@@ -39,19 +34,20 @@ public class ConfigurationManager {
         Properties props = loadPropertiesFile(fileName);
 
         // Get value from properties file
-        String value = props.getProperty(key, defaultValue);
+        String value = props.getProperty(key);
 
         if (value == null) {
-            logger.warn("Property '{}' not found in '{}'. Using default: {}", key, fileName, defaultValue);
-        } else {
-            logger.debug("Retrieved property '{}' from '{}': {}", key, fileName, value);
+            logger.error("Required property '{}' not found in '{}.properties'", key, fileName);
+            throw new RuntimeException(
+                    "Required property '" + key + "' is missing in '" + fileName
+                            + ".properties'. Please add it to the properties file.");
         }
 
+        logger.debug("Retrieved property '{}' from '{}': {}", key, fileName, value);
         return value;
     }
 
     // Load properties file from configSettings directory
-    // Uses caching to avoid repeated file I/O
     private static Properties loadPropertiesFile(String fileName) {
         // Check cache first
         if (propertiesCache.containsKey(fileName)) {
