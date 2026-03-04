@@ -4,21 +4,17 @@ import mainFrameworkUtils.ContentRepo;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import testFrameworkUtils.BaseTest;
+import testFramework.base.SauceDemoBaseTest;
 import xpathRepo.SauceDemoXpathRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class verifyProductFilterOptions extends BaseTest {
+public class verifyProductFilterOptions extends SauceDemoBaseTest {
 
     @Test(description = "Verify that product filter options match the expected values")
     public void TC_003_testProductFilterOptions() {
         logToExtent("SauceDemo application launched successfully.");
-
-        // Step 1: Login
-        sdfl.loginInSauceDemo();
-        logToExtent("User logged in successfully.");
 
         // Step 2: Fetch actual filter options
         List<WebElement> elements = sdfl.getListOfElements(SauceDemoXpathRepo.productFilterOptions);

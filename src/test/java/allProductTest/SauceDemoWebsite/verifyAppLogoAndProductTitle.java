@@ -3,19 +3,15 @@ package allProductTest.SauceDemoWebsite;
 import mainFrameworkUtils.ContentRepo;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import testFrameworkUtils.BaseTest;
+import testFramework.base.SauceDemoBaseTest;
 import xpathRepo.SauceDemoXpathRepo;
 
-//@Listeners(testFrameworkUtils.Listeners.class)
-public class verifyAppLogoAndProductTitle extends BaseTest {
+//@Listeners(testFramework.reporting.Listeners.class)
+public class verifyAppLogoAndProductTitle extends SauceDemoBaseTest {
 
     @Test(description = "Verify the App Logo and Product Title on home page")
     public void TC_002_testAppLogoAndProductTitle() {
         logToExtent("SauceDemo application launched successfully.");
-
-        // Login to the application
-        sdfl.loginInSauceDemo();
-        logToExtent("User logged in successfully.");
 
         // Verify App Logo
         String expectedAppLogoText = ContentRepo.appLogo;

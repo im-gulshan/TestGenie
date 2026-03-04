@@ -1,4 +1,4 @@
-package testFrameworkUtils;
+package testFramework.core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,12 +18,12 @@ import java.util.Properties;
 
 public class WebDriverSetup {
     public WebDriver driver;
-    public String testEnvUrl;
 
     public WebDriver launchApplication() throws IOException {
         // Load configuration
         Properties prop = new Properties();
-        Path configPath = Paths.get(System.getProperty("user.dir"), "src", "main", "java", "configSettings", "GlobalData.properties");
+        Path configPath = Paths.get(System.getProperty("user.dir"), "src", "main", "java", "configSettings",
+                "GlobalData.properties");
         File configFile = configPath.toFile();
 
         if (!configFile.exists()) {
@@ -43,9 +43,8 @@ public class WebDriverSetup {
                 ? browserProp.toLowerCase()
                 : prop.getProperty("browser", "chrome").toLowerCase();
 
-        testEnvUrl = prop.getProperty("testEnvURL");
-
-        // Prefer command-line value (-Dheadless=true) over property file for headless execution
+        // Prefer command-line value (-Dheadless=true) over property file for headless
+        // execution
         String headlessProp = System.getProperty("headless");
         boolean isHeadLess = headlessProp != null
                 ? Boolean.parseBoolean(headlessProp)
@@ -67,7 +66,6 @@ public class WebDriverSetup {
         }
 
         driver.manage().window().maximize();
-        driver.get(testEnvUrl);
         return driver;
     }
 
@@ -88,8 +86,9 @@ public class WebDriverSetup {
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-extensions");
         options.addArguments("--window-size=1920,1080");
-//        options.addArguments("--start-maximized");
-        options.addArguments("--disable-features=PasswordManagerEnabled,AutofillServerCommunication,AutofillCreditCardAssist");
+        // options.addArguments("--start-maximized");
+        options.addArguments(
+                "--disable-features=PasswordManagerEnabled,AutofillServerCommunication,AutofillCreditCardAssist");
 
         return options;
     }
@@ -104,15 +103,16 @@ public class WebDriverSetup {
 
         options.setExperimentalOption("prefs", edgePrefs);
         options.addArguments("--disable-save-password-bubble");
-        if (isHeadLess){
+        if (isHeadLess) {
             options.addArguments("--headless=new");
         }
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-infobars");
         options.addArguments("--disable-extensions");
-//        options.addArguments("--start-maximized");
+        // options.addArguments("--start-maximized");
         options.addArguments("--window-size=1920,1080");
-        options.addArguments("--disable-features=PasswordManagerEnabled,AutofillServerCommunication,AutofillCreditCardAssist");
+        options.addArguments(
+                "--disable-features=PasswordManagerEnabled,AutofillServerCommunication,AutofillCreditCardAssist");
 
         return options;
     }
@@ -121,7 +121,7 @@ public class WebDriverSetup {
         FirefoxOptions options = new FirefoxOptions();
 
         // Set Firefox to headless mode
-        if (isHeadLess){
+        if (isHeadLess) {
             options.addArguments("--headless");
         }
 
